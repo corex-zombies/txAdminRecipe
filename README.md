@@ -4,21 +4,9 @@
 
 ---
 
-## 📋 Prerequisites — Install These First (Order Matters)
+## 📋 Prerequisites
 
-### 1️⃣ MySQL / MariaDB
-
-COREX uses a MySQL database. Pick **one** of these (any is fine):
-
-| Option | Best For | Download |
-|---|---|---|
-| **XAMPP** | Easiest — bundles MySQL + phpMyAdmin GUI | <https://www.apachefriends.org/> |
-| **Laragon** | Lightweight Windows option | <https://laragon.org/> |
-| **MySQL Workbench** | Advanced / production | <https://dev.mysql.com/downloads/workbench/> |
-
-After install, start MySQL and make sure it's running on port `3306` (the default).
-
-### 2️⃣ FXServer (the FiveM server binary)
+### 1️⃣ FXServer (the FiveM server binary)
 
 This is the program that runs your FiveM server. txAdmin is bundled inside it.
 
@@ -33,7 +21,7 @@ This is the program that runs your FiveM server. txAdmin is bundled inside it.
    └── ... (other files)
    ```
 
-### 3️⃣ Cfx.re License Key
+### 2️⃣ Cfx.re License Key
 
 Free key required to run any FiveM server.
 
