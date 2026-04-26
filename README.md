@@ -4,6 +4,16 @@
 
 ---
 
+## 🎬 Video Tutorial
+
+Full install walkthrough — recommended for first-time users:
+
+[![Watch the install video](https://img.youtube.com/vi/Y7mIvYN7gVo/maxresdefault.jpg)](https://youtu.be/Y7mIvYN7gVo)
+
+▶ <https://youtu.be/Y7mIvYN7gVo>
+
+---
+
 ## 📋 Prerequisites
 
 ### 1️⃣ FXServer (the FiveM server binary)
@@ -27,7 +37,7 @@ Free key required to run any FiveM server.
 
 1. Go to <https://keymaster.fivem.net/>
 2. Sign in → **+ New Server Key**
-3. Copy the key — you'll paste it into `server.cfg` later.
+3. Copy the key — txAdmin will pick it up automatically when you link your Cfx.re account in the wizard.
 
 ---
 
@@ -79,29 +89,17 @@ In the **Deployment Type** screen:
   - `corex-core`, `corex-spawn`, `corex-death`, `corex-hud`, `corex-survival`
   - `corex-inventory`, `corex-crafting`, `corex-notify`, `corex-events`
   - `corex-weather`, `corex-zombies`, `corex-zones`, `corex-redzones`, `corex-loot`
-- A pre-configured `server.cfg`
+- Map assets (`patoche_halloween_house`)
+- A pre-configured `server.cfg` (license key + MySQL string filled in by txAdmin)
 - The COREX database schema (auto-imported)
 
 ---
 
-## ⚙️ Final Configuration (Required)
+## ✅ After Install
 
-When the wizard finishes, open `server.cfg` (txAdmin shows you where it is) and edit:
+txAdmin auto-fills both `sv_licenseKey` and `mysql_connection_string` for you — no manual editing required. Just hit **Start Server** in txAdmin.
 
-```cfg
-# Your Cfx.re license key from https://keymaster.fivem.net/
-sv_licenseKey "PASTE_YOUR_KEY_HERE"
-
-# MySQL connection — pick the format that matches your setup:
-
-# A) MySQL WITH a password (Workbench, production)
-set mysql_connection_string "mysql://root:YOUR_PASSWORD@localhost/corex?charset=utf8mb4"
-
-# B) MySQL WITHOUT a password (XAMPP / Laragon default)
-set mysql_connection_string "mysql://root@localhost/corex?charset=utf8mb4"
-```
-
-Save the file, then click **Start Server** in txAdmin. ✅
+If you skipped the Cfx.re account link, open `server.cfg` and paste your license key into `sv_licenseKey`.
 
 ---
 
