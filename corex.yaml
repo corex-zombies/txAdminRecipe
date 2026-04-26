@@ -1,0 +1,118 @@
+$engine: 3
+$onesync: on
+$minFxVersion: 6624
+name: COREX Framework
+version: 1.0.0
+author: ABUGIZA
+description: Modern FiveM Zombie-Survival framework — Lua 5.4, oxmysql, StateBag sync.
+
+variables: {}
+
+tasks:
+  # ──────────────── Base Files ────────────────
+  - action: download_github
+    src: https://github.com/corex-zombies/txAdminRecipe
+    ref: main
+    dest: ./tmp/corex_recipe
+
+  - action: move_path
+    src: ./tmp/corex_recipe/server.cfg
+    dest: ./server.cfg
+
+  # ──────────────── Database ────────────────
+  - action: connect_database
+  - action: query_database
+    file: ./tmp/corex_recipe/corex_framework.sql
+
+  # ──────────────── CFX Default Resources ────────────────
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    ref: master
+    subpath: resources
+    dest: ./resources/[cfx-default]
+
+  # ──────────────── Standalone Dependencies ────────────────
+  - action: download_file
+    path: ./tmp/files/oxmysql.zip
+    url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
+  - action: unzip
+    src: ./tmp/files/oxmysql.zip
+    dest: ./resources/[standalone]
+
+  # ──────────────── COREX Resources ────────────────
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-core
+    ref: main
+    dest: ./resources/[corex]/corex-core
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-spawn
+    ref: main
+    dest: ./resources/[corex]/corex-spawn
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-death
+    ref: main
+    dest: ./resources/[corex]/corex-death
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-hud
+    ref: main
+    dest: ./resources/[corex]/corex-hud
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-survival
+    ref: main
+    dest: ./resources/[corex]/corex-survival
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-inventory
+    ref: main
+    dest: ./resources/[corex]/corex-inventory
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-crafting
+    ref: main
+    dest: ./resources/[corex]/corex-crafting
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-notify
+    ref: main
+    dest: ./resources/[corex]/corex-notify
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-events
+    ref: main
+    dest: ./resources/[corex]/corex-events
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-weather
+    ref: main
+    dest: ./resources/[corex]/corex-weather
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-zombies
+    ref: main
+    dest: ./resources/[corex]/corex-zombies
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-zones
+    ref: main
+    dest: ./resources/[corex]/corex-zones
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-redzones
+    ref: main
+    dest: ./resources/[corex]/corex-redzones
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-loot
+    ref: main
+    dest: ./resources/[corex]/corex-loot
+
+  # ──────────────── Cleanup ────────────────
+  - action: remove_path
+    path: ./tmp
+
+  - action: waste_time
+    seconds: 1
