@@ -39,6 +39,13 @@ tasks:
     src: ./tmp/files/oxmysql.zip
     dest: ./resources/[standalone]
 
+  # ──────────────── Map / Asset Resources ────────────────
+  - action: download_github
+    src: https://github.com/ABUGIZA/COREX-Framework
+    ref: main
+    subpath: server-file/resources/[assets]/patoche_halloween_house
+    dest: ./resources/[assets]/patoche_halloween_house
+
   # ──────────────── COREX Resources ────────────────
   - action: download_github
     src: https://github.com/corex-zombies/corex-core
