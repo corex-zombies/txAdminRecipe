@@ -40,10 +40,8 @@ tasks:
     dest: ./resources/[standalone]
 
   # ──────────────── Map / Asset Resources ────────────────
-  - action: download_github
-    src: https://github.com/ABUGIZA/COREX-Framework
-    ref: main
-    subpath: server-file/resources/[assets]/patoche_halloween_house
+  - action: move_path
+    src: ./tmp/corex_recipe/assets/patoche_halloween_house
     dest: ./resources/[assets]/patoche_halloween_house
 
   # ──────────────── COREX Resources ────────────────
