@@ -115,6 +115,11 @@ tasks:
     ref: main
     dest: ./resources/[corex]/corex-loot
 
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-skills
+    ref: main
+    dest: ./resources/[corex]/corex-skills
+    
   # ──────────────── Cleanup ────────────────
   - action: remove_path
     path: ./tmp
