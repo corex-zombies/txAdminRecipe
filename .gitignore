@@ -1,0 +1,4 @@
+# Internal fixture code and generated test state stay local.
+/tests/
+*.log
+*.tmp
