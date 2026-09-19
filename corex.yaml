@@ -12,7 +12,7 @@ tasks:
   # ──────────────── Base Files ────────────────
   - action: download_github
     src: https://github.com/corex-zombies/txAdminRecipe
-    ref: main
+    ref: 3e9de9fc51a82f03bed2059d95ea6afe8daaa357
     dest: ./tmp/corex_recipe
 
   - action: move_path
@@ -47,77 +47,77 @@ tasks:
   # ──────────────── COREX Resources ────────────────
   - action: download_github
     src: https://github.com/corex-zombies/corex-core
-    ref: main
+    ref: 8b181b8ceecf6ed699bdfb1e5f9e84d10958442e
     dest: ./resources/[corex]/corex-core
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-spawn
-    ref: main
+    ref: f819c08a82c7e9b0f5342f399be3e58178acaa98
     dest: ./resources/[corex]/corex-spawn
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-death
-    ref: main
+    ref: 09276eacc66757e8ca6d9563b5626d49212aa699
     dest: ./resources/[corex]/corex-death
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-hud
-    ref: main
+    ref: 0c8bc4ab5252906f4e4c47885824dc1e9db1f2f0
     dest: ./resources/[corex]/corex-hud
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-survival
-    ref: main
+    ref: 849fa2f5aca6170c4fef21b5a17f3eb96b99d120
     dest: ./resources/[corex]/corex-survival
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-inventory
-    ref: main
+    ref: c72e96b158007ebfd1dc6d3160ab5dfb495c96e3
     dest: ./resources/[corex]/corex-inventory
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-crafting
-    ref: main
+    ref: b18ad4f94332d642cda5c20f3bd50c6de5b1649c
     dest: ./resources/[corex]/corex-crafting
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-notify
-    ref: main
+    ref: dcc909f14ea277663cbcb43bbca7e3ab7e912bca
     dest: ./resources/[corex]/corex-notify
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-events
-    ref: main
+    ref: de3d07cfe03a02bd01cba4e06c9d378a91c56758
     dest: ./resources/[corex]/corex-events
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-weather
-    ref: main
+    ref: 045019c03c31391c219c0a128f5dce3e9f218bf6
     dest: ./resources/[corex]/corex-weather
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-zombies
-    ref: main
+    ref: a9e30d98894042d0e5627788a3ed4a9e4b95d03c
     dest: ./resources/[corex]/corex-zombies
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-zones
-    ref: main
+    ref: 9e6cfd5e4146f91e055fa22a36ac0f71427149d5
     dest: ./resources/[corex]/corex-zones
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-redzones
-    ref: main
+    ref: 57f15907686cbc8ca48490c8dc671eec2871ecb7
     dest: ./resources/[corex]/corex-redzones
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-loot
-    ref: main
+    ref: 145513ebd85da4e58433da98c8d2c47661b00e7a
     dest: ./resources/[corex]/corex-loot
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-skills
-    ref: main
+    ref: 888ae5897a81fd7ff58b2612e23e97773d17516b
     dest: ./resources/[corex]/corex-skills
     
   # ──────────────── Cleanup ────────────────
