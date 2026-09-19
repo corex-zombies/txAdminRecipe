@@ -1,6 +1,6 @@
 $engine: 3
 $onesync: on
-$minFxVersion: 6624
+$minFxVersion: 12913
 name: COREX Framework
 version: 1.0.0
 author: ABUGIZA
@@ -12,7 +12,7 @@ tasks:
   # ──────────────── Base Files ────────────────
   - action: download_github
     src: https://github.com/corex-zombies/txAdminRecipe
-    ref: 3e9de9fc51a82f03bed2059d95ea6afe8daaa357
+    ref: 1994c96397a994a52d665b39f9488a9f629f14eb
     dest: ./tmp/corex_recipe
 
   - action: move_path
@@ -27,16 +27,36 @@ tasks:
   # ──────────────── CFX Default Resources ────────────────
   - action: download_github
     src: https://github.com/citizenfx/cfx-server-data
-    ref: master
+    ref: 32d98e7524b952faf8b220d719615b0346b0a6cc
     subpath: resources
-    dest: ./resources/[cfx-default]
+    dest: ./tmp/cfx_resources
+
+  # Only the required managers/events are installed. CFX example money scripts,
+  # development runcode, example loadscreen and RedM maps are not COREX gameplay.
+  - action: move_path
+    src: ./tmp/cfx_resources/[managers]/mapmanager
+    dest: ./resources/[cfx-default]/mapmanager
+  - action: move_path
+    src: ./tmp/cfx_resources/[managers]/spawnmanager
+    dest: ./resources/[cfx-default]/spawnmanager
+  - action: move_path
+    src: ./tmp/cfx_resources/[system]/baseevents
+    dest: ./resources/[cfx-default]/baseevents
 
   # ──────────────── Standalone Dependencies ────────────────
   - action: download_file
     path: ./tmp/files/oxmysql.zip
-    url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
+    url: https://github.com/overextended/oxmysql/releases/download/v2.14.1/oxmysql.zip
   - action: unzip
     src: ./tmp/files/oxmysql.zip
+    dest: ./resources/[standalone]
+
+  # corex-admin requires the built ox_lib release (including its web assets).
+  - action: download_file
+    path: ./tmp/files/ox_lib.zip
+    url: https://github.com/overextended/ox_lib/releases/download/v3.39.0/ox_lib.zip
+  - action: unzip
+    src: ./tmp/files/ox_lib.zip
     dest: ./resources/[standalone]
 
   # ──────────────── Map / Asset Resources ────────────────
@@ -47,79 +67,131 @@ tasks:
   # ──────────────── COREX Resources ────────────────
   - action: download_github
     src: https://github.com/corex-zombies/corex-core
-    ref: 8b181b8ceecf6ed699bdfb1e5f9e84d10958442e
+    ref: 08f37a7119cc3e17d5c7e969e930bd56d7bb4094
     dest: ./resources/[corex]/corex-core
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-spawn
-    ref: f819c08a82c7e9b0f5342f399be3e58178acaa98
+    ref: c979b136ea2a8807eecaf8dce3c4f44051539128
     dest: ./resources/[corex]/corex-spawn
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-death
-    ref: 09276eacc66757e8ca6d9563b5626d49212aa699
+    ref: 22edd2d429b6b4993e02666af21395d86310f347
     dest: ./resources/[corex]/corex-death
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-hud
-    ref: 0c8bc4ab5252906f4e4c47885824dc1e9db1f2f0
+    ref: 51ef0b8bc21cbb69aad9c12dd300e4a0363cfffd
     dest: ./resources/[corex]/corex-hud
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-survival
-    ref: 849fa2f5aca6170c4fef21b5a17f3eb96b99d120
+    ref: e6b0084b3ad2c14ed9e8e62e8db16631cc2eb7f9
     dest: ./resources/[corex]/corex-survival
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-inventory
-    ref: c72e96b158007ebfd1dc6d3160ab5dfb495c96e3
+    ref: 3af83d34a14f5725133d02bb1be2b3e2a11dcb75
     dest: ./resources/[corex]/corex-inventory
+
+  # Compatibility services are installed as separate resources so CoreX remains
+  # native-first while framework facades and content packs can evolve safely.
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-capabilities
+    ref: 709e440341b9f496b37f86f0b29fc640ea2085c6
+    dest: ./resources/[corex]/corex-capabilities
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-ui-compat
+    ref: 0dd029e1f9ec7722aa1d1572ac1c7342e2cc691c
+    dest: ./resources/[corex]/corex-ui-compat
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-adapters
+    ref: 8fc00c2336318d37c69ee6f8e3a63c6ec1091ce5
+    dest: ./resources/[corex]/corex-adapters
+
+  - action: download_github
+    src: https://github.com/corex-zombies/qb-core
+    ref: 96a60a783579a64aec788f504d6ebc88e6ae270d
+    dest: ./resources/[corex]/qb-core
+
+  - action: download_github
+    src: https://github.com/corex-zombies/qbx_core
+    ref: af29f80a0d6ed4844602531c95bc706aeb23be26
+    dest: ./resources/[corex]/qbx_core
+
+  - action: download_github
+    src: https://github.com/corex-zombies/es_extended
+    ref: 802ab603b61b2b83bf1177a0b45518ff8e9234b5
+    dest: ./resources/[corex]/es_extended
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-content
+    ref: c18080d06558bffa163cbdc02e6cda324379eac3
+    dest: ./resources/[corex]/corex-content
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-lab
+    ref: 8d388ac5a35a205dd8170a80c994ea34b431a7ed
+    dest: ./resources/[corex]/corex-lab
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-ui-proxies
+    ref: da8598620f20a76b65a780714a7c62f2cb126d2f
+    dest: ./resources/[corex-ui-proxies]
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-crafting
-    ref: b18ad4f94332d642cda5c20f3bd50c6de5b1649c
+    ref: 1c1837ed6126124992f1a382f03bd7119609e558
     dest: ./resources/[corex]/corex-crafting
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-notify
-    ref: dcc909f14ea277663cbcb43bbca7e3ab7e912bca
+    ref: d01664ccd5c8343c99cc6ba6a6b1f6d1e6243e9b
     dest: ./resources/[corex]/corex-notify
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-events
-    ref: de3d07cfe03a02bd01cba4e06c9d378a91c56758
+    ref: f911d686a8a0319b6167fd6c9683b3215df52ecf
     dest: ./resources/[corex]/corex-events
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-weather
-    ref: 045019c03c31391c219c0a128f5dce3e9f218bf6
+    ref: e2b1e15db009b803ea23605c8dd4b4937cdc373e
     dest: ./resources/[corex]/corex-weather
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-zombies
-    ref: a9e30d98894042d0e5627788a3ed4a9e4b95d03c
+    ref: 25ffa26fe89f010a25c73e85e98ef3658cd3b46f
     dest: ./resources/[corex]/corex-zombies
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-zones
-    ref: 9e6cfd5e4146f91e055fa22a36ac0f71427149d5
+    ref: b9f744cfb870b36d9a61e87f4b39f842e440ea29
     dest: ./resources/[corex]/corex-zones
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-redzones
-    ref: 57f15907686cbc8ca48490c8dc671eec2871ecb7
+    ref: 20aac09368c49a3a32149b501f8b55f09841ed38
     dest: ./resources/[corex]/corex-redzones
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-loot
-    ref: 145513ebd85da4e58433da98c8d2c47661b00e7a
+    ref: 98397bfe22fb196ad41ade5e8f6fb26e4a6ca8b8
     dest: ./resources/[corex]/corex-loot
 
   - action: download_github
     src: https://github.com/corex-zombies/corex-skills
-    ref: 888ae5897a81fd7ff58b2612e23e97773d17516b
+    ref: 687e30b5fd546cb13898f636e35a23cecdb5d561
     dest: ./resources/[corex]/corex-skills
-    
+
+  - action: download_github
+    src: https://github.com/corex-zombies/corex-admin
+    ref: a500d850124273f29f3a4e2d61b8b37b575727d8
+    dest: ./resources/[corex]/corex-admin
+
   # ──────────────── Cleanup ────────────────
   - action: remove_path
     path: ./tmp
